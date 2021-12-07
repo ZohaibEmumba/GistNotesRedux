@@ -2,8 +2,8 @@ import axios from "axios";
 
 //auth user API loginng in 
 const BASE_URL = 'https://api.github.com';
-// const PAT =  "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";
-// const userName=  "Zohaibkhattak15";
+const PAT =  "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";
+const userName=  "Zohaibkhattak15";
 
 export const loginAuthUser = async (userName) => {
     const authUserRecord = await axios.get(`${BASE_URL}/users/${userName}`).then(data => data?.data );
@@ -20,4 +20,18 @@ export const getPublicGist = async (id) => {
         id : id
     }).then(data => data.data);
     return getPublicGistObj;
+}
+
+export const privateGistsRecord = async () => {
+    const privateGistsRecord = await axios.get(
+        `${BASE_URL}/gists?per_page=10`,
+        {
+          headers: {
+            Authorization: `Basic ${btoa(
+              `${userName}:${PAT}`
+            )}`,
+          },
+        }
+      ).then(data => data.data);
+      return privateGistsRecord;
 }

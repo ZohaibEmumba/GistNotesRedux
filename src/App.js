@@ -5,6 +5,7 @@ import Navbar from "./components/navbar/Navbar";
 import Login from "./components/login/login";
 import HomePage from "./components/homepage/HomePage";
 import UniqueGist from "./components/common/uniquegist/UniqueGist";
+import ProfilePage from "./components/profilepage/ProfilePage";
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/profilePage" element={<ProfilePage />} />
             <Route path="/getGist/" element={<UniqueGist />} />
           </Routes>
         </Router>

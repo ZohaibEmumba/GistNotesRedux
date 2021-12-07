@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./style.css";
 
-export default class PublicTable extends Component {
+class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,59 +15,90 @@ export default class PublicTable extends Component {
   }
 
   render() {
-    const { publicGistsDisplay } = this.props;
+    const { publicGistsDisplay , privateGistsDisplay } = this.props;
     const { date } = this.state;
     return (
       <>
-        <section className="body-div">
-          <table className="disp-gists-table">
-            <thead>
-              <tr>
-                <th>
-                  <input type="checkbox" />
-                </th>
-                <th>Name</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Keyword</th>
-                <th>Notebook Name</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {publicGistsDisplay.map((gist, index) => (
-                <tr key={index} 
-                onClick={() => {
-                    this.showUniqueGistRecord(gist?.id);
-                  }}
-                >
-                  <td>
-                    {" "}
-                    <input type="checkbox" />{" "}
-                  </td>
-                  <td>
-                    <div className="username-section">
-                      <span>
-                        {" "}
-                        <img
-                          className="profile-img"
-                          src={gist?.owner?.avatar_url}
-                          alt="Profile Pics"
-                        />
-                      </span>
-                      <span className="username">{gist?.owner?.login}</span>
-                    </div>
-                  </td>
-                  <td>{date.toLocaleDateString()}</td>
-                  <td>{date.toLocaleTimeString()}</td>
-                  <td>{Object.keys(gist?.files)[0]}</td>
-                  <td>{gist?.description}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </section>
+      <section>
+      <table className="disp-gists-table">
+    <thead>
+      <tr>
+        <th>
+          <input type="checkbox" />
+        </th>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Keyword</th>
+        <th>Notebook Name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        {privateGistsDisplay ? ( privateGistsDisplay.map((gist, index) => (
+        <tr key={index} 
+        onClick={() => {
+            this.showUniqueGistRecord(gist?.id);
+          }}
+        >
+          <td>
+            {" "}
+            <input type="checkbox" />{" "}
+          </td>
+          <td>
+            <div className="username-section">
+              <span>
+                {" "}
+                <img
+                  className="profile-img"
+                  src={gist?.owner?.avatar_url}
+                  alt="Profile Pics"
+                />
+              </span>
+              <span className="username">{gist?.owner?.login}</span>
+            </div>
+          </td>
+          <td>{date.toLocaleDateString()}</td>
+          <td>{date.toLocaleTimeString()}</td>
+          <td>{Object.keys(gist?.files)[0]}</td>
+          <td>{gist?.description}</td>
+        </tr>
+      ))): (publicGistsDisplay.map((gist, index) => (
+          <tr key={index} 
+          onClick={() => {
+              this.showUniqueGistRecord(gist?.id);
+            }}
+          >
+            <td>
+              {" "}
+              <input type="checkbox" />{" "}
+            </td>
+            <td>
+              <div className="username-section">
+                <span>
+                  {" "}
+                  <img
+                    className="profile-img"
+                    src={gist?.owner?.avatar_url}
+                    alt="Profile Pics"
+                  />
+                </span>
+                <span className="username">{gist?.owner?.login}</span>
+              </div>
+            </td>
+            <td>{date.toLocaleDateString()}</td>
+            <td>{date.toLocaleTimeString()}</td>
+            <td>{Object.keys(gist?.files)[0]}</td>
+            <td>{gist?.description}</td>
+          </tr>
+        )))}
+        </tbody>
+  </table>
+</section>
       </>
     );
   }
 }
+
+
+export default Table;

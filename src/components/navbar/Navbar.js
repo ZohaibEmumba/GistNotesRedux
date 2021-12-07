@@ -6,8 +6,15 @@ import SearchBar from "./searchBar/Searchbar";
 import "./style.css";
 
 export default class Navbar extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      userName : "Zohaibkhattak15"
+    }
+  }
   
   render() {
+    const {userName} = this.state;
     return (
       <>
         <section>
@@ -21,8 +28,7 @@ export default class Navbar extends Component {
             <div className="navbar-search-section">
               <SearchBar />
               {
-                JSON.parse(localStorage.getItem("userName")) ===
-              "Zohaibkhattak15" ? (
+                userName === "Zohaibkhattak15" ? (
                 <Dropdown />
               ) : (
                  <Link to="/login">
