@@ -7,6 +7,11 @@ export default class PublicTable extends Component {
     this.state = {
       date: new Date("2021-01-09T14:56:23"),
     };
+    this.showUniqueGistRecord =  this.showUniqueGistRecord.bind(this);
+  }
+
+  showUniqueGistRecord (id) {
+    window.location = `/getGist?Id=${id}`;
   }
 
   render() {
@@ -31,7 +36,11 @@ export default class PublicTable extends Component {
             </thead>
             <tbody>
               {publicGistsDisplay.map((gist, index) => (
-                <tr key={index}>
+                <tr key={index} 
+                onClick={() => {
+                    this.showUniqueGistRecord(gist?.id);
+                  }}
+                >
                   <td>
                     {" "}
                     <input type="checkbox" />{" "}
@@ -42,17 +51,17 @@ export default class PublicTable extends Component {
                         {" "}
                         <img
                           className="profile-img"
-                          src={gist.owner.avatar_url}
+                          src={gist?.owner?.avatar_url}
                           alt="Profile Pics"
                         />
                       </span>
-                      <span className="username">{gist.owner.login}</span>
+                      <span className="username">{gist?.owner?.login}</span>
                     </div>
                   </td>
                   <td>{date.toLocaleDateString()}</td>
                   <td>{date.toLocaleTimeString()}</td>
-                  <td>{Object.keys(gist.files)[0]}</td>
-                  <td>{gist.description}</td>
+                  <td>{Object.keys(gist?.files)[0]}</td>
+                  <td>{gist?.description}</td>
                 </tr>
               ))}
             </tbody>

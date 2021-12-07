@@ -14,3 +14,10 @@ export const publicGistsRecord = async () => {
     const publicGistsRecords = await axios.get(`${BASE_URL}/gists?per_page=10`).then(data => data?.data );
     return publicGistsRecords;
 }
+
+export const getPublicGist = async (id) => {
+    const getPublicGistObj = await axios.get(`${BASE_URL}/gists/${id}`, {
+        id : id
+    }).then(data => data.data);
+    return getPublicGistObj;
+}

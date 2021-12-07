@@ -3,6 +3,7 @@
     flex-wrap: wrap;
     width: 90%;
     margin-left: 130px;
+    cursor: pointer;
   }
   .grid-display {
     display: flex;

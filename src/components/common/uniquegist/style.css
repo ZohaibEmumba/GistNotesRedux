@@ -1,0 +1,60 @@
+.card-header-public {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 45px auto;
+  width: 70%;
+}
+.gist-icons {
+  display: flex;
+  width: 250px;
+  gap: 40px;
+  margin-top: 22px;
+}
+.gist-icons .icons1 {
+  display: flex;
+  gap: 10px;
+  height: 25px;
+  cursor: pointer;
+}
+.gist-icons .icons2 {
+  display: flex;
+  gap: 10px;
+  height: 25px;
+  cursor: pointer;
+}
+.profile-section {
+  display: flex;
+  gap: 20px;
+}
+.body {
+  box-shadow: 0px 5px 18px #c9c7c7;
+  width: 80%;
+  margin: 0 auto;
+  padding: 5px 0;
+  text-align: start;
+}
+.card-body {
+    justify-content: flex-start;
+    margin: 10px auto;
+    width: 95%;
+    border-bottom: 1px solid gray;
+    padding: 20px 20px;
+    height: 15px;
+    border-radius: 10px;
+    
+}
+.file-name {
+  color: blue;
+}
+p{
+ padding: 4px 10px;   
+}
+.card-body-content {
+  width: 95%;
+  padding: 10px 0 0 30px;
+  margin: -27px auto;
+}
+#headings {
+  color: blue;
+}

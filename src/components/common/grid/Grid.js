@@ -5,14 +5,23 @@ export default class Grid extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.showUniqueGistRecord =  this.showUniqueGistRecord.bind(this);
   }
+  showUniqueGistRecord (id) {
+    window.location = `/getGist?Id=${id}`;
+  }
+
   render() {
       const {publicGistsDisplay} = this.props;
     return (
       <> 
       <section className="card" >
         {publicGistsDisplay.map((gist , index) => (
-          <section key={index} className="grid-display">
+          <section key={index}
+            onClick={() => {
+                    this.showUniqueGistRecord(gist?.id);
+                  }}
+          className="grid-display">
             <div>
               <p>1 This is the content Section...... </p>
               <p>2 This is the content Section...... </p>

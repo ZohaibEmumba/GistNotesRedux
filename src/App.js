@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Login from "./components/login/login";
 import HomePage from "./components/homepage/HomePage";
+import UniqueGist from "./components/common/uniquegist/UniqueGist";
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/getGist/" element={<UniqueGist />} />
           </Routes>
         </Router>
       </div>
