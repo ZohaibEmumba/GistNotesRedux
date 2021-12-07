@@ -6,6 +6,11 @@ const BASE_URL = 'https://api.github.com';
 // const userName=  "Zohaibkhattak15";
 
 export const loginAuthUser = async (userName) => {
-    const authUserRecord = await axios.get(`${BASE_URL}/users/${userName}`).then(data => data.data );
+    const authUserRecord = await axios.get(`${BASE_URL}/users/${userName}`).then(data => data?.data );
     return authUserRecord;
+}
+
+export const publicGistsRecord = async () => {
+    const publicGistsRecords = await axios.get(`${BASE_URL}/gists?per_page=10`).then(data => data?.data );
+    return publicGistsRecords;
 }

@@ -1,0 +1,44 @@
+.body-div{
+    margin: 150px auto;
+}
+table {
+  display: table;
+  width: 80%;
+  margin: 15px auto;
+  text-align: left;
+}
+
+th {
+  background-color: #def5ec;
+  padding: 20px 20px 20px 20px;
+}
+
+td {
+  padding: 10px 10px 10px 10px;
+  border-bottom: 2px solid #def5ec;
+  text-align: left;
+  cursor: pointer;
+}
+   
+  .profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  .username-section {
+    display: flex;
+    gap: 15px;
+  }
+  .username {
+    justify-content: center;
+    align-self: center;
+  }
+  .view-icons {
+    display: flex;
+    width: 80%;
+    justify-content: flex-end;
+    margin: 15px 200px 5px auto;
+    gap: 15px;
+    cursor: pointer;
+  }

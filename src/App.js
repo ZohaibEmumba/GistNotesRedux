@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Login from "./components/login/login";
+import HomePage from "./components/homepage/HomePage";
 
 class App extends Component {
   render() {
@@ -11,7 +12,7 @@ class App extends Component {
         <Router>
           <Navbar />
           <Routes>
-            {/* <Route path="/" element={} /> */}
+            <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
           </Routes>
         </Router>

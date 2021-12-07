@@ -81,14 +81,14 @@ class Login extends Component {
 //     }
 // }
 const mapDispatchToProps = (dispatch) => {
-    return {
-         setUserData : (userName) => {
+    return ({
+        setUserData : (userName) => {
            dispatch({
              type : "LOGIN",
-             payload : userName
+             payload: userName
            })
          }
-    }
+    })
 }
 export default connect(null,mapDispatchToProps)(Login)
 
