@@ -22,7 +22,10 @@ export default class Navbar extends Component {
             <div className="left-Section">
               <Link to="/"> 
                 {" "}
-                <img src={Logo} alt="Emumba" className="navbar-logo-styling"  />{" "}
+                <img src={Logo} alt="Emumba" className="navbar-logo-styling" onClick={() => {
+                    this.setState({userName : null})
+                   window.location.replace("/")
+                  }}  />{" "}
               </Link> 
             </div>
             <div className="navbar-search-section">
