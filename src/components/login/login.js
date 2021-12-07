@@ -75,11 +75,11 @@ class Login extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         userName : state.loginReducer
-//     }
-// }
+const mapStateToProps = (state) => {
+    return {
+        token : state.loginReducer
+    }
+}
 const mapDispatchToProps = (dispatch) => {
     return ({
         setUserData : (userName) => {
@@ -90,6 +90,6 @@ const mapDispatchToProps = (dispatch) => {
          }
     })
 }
-export default connect(null,mapDispatchToProps)(Login)
+export default connect(mapStateToProps,mapDispatchToProps)(Login)
 
 

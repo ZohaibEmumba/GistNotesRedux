@@ -12,7 +12,6 @@ export default class PublicTable extends Component {
   render() {
     const { publicGistsDisplay } = this.props;
     const { date } = this.state;
-    console.log(publicGistsDisplay);
     return (
       <>
         <section className="body-div">
