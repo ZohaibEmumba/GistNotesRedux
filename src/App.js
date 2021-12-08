@@ -7,7 +7,7 @@ import HomePage from "./components/homepage/HomePage";
 import UniqueGist from "./components/common/uniquegist/UniqueGist";
 import NewsFeedPage from "./components/newsfeed/NewsFeedPage";
 import CreateGists from "./components/creategist/CreateGist";
-import UpdateAGist from './components/editgist/UpdateGist';
+import UpdateAGist from "./components/editgist/UpdateGist";
 import GithubProfile from "./components/gitprofilepage/GitProfilePage";
 
 class App extends Component {
@@ -23,8 +23,7 @@ class App extends Component {
             <Route path="/github-profile-page" element={<GithubProfile />} />
             <Route path="/getGist/" element={<UniqueGist />} />
             <Route path="/create-a-gist/" element={<CreateGists />} />
-            <Route path="/editGist/" element={<UpdateAGist /> } />
-
+            <Route path="/editGist/" element={<UpdateAGist />} />
           </Routes>
         </Router>
       </div>
