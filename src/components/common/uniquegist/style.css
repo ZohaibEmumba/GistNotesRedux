@@ -7,9 +7,11 @@
 }
 .gist-icons {
   display: flex;
-  width: 250px;
-  gap: 40px;
-  margin-top: 22px;
+  width: 500px;
+  grid-gap: 43px;
+  gap: 55px;
+  margin-top: 37px;
+  cursor: pointer;
 }
 .gist-icons .icons1 {
   display: flex;
@@ -35,24 +37,22 @@
   text-align: start;
 }
 .card-body {
-    justify-content: flex-start;
-    margin: 10px auto;
-    width: 95%;
-    border-bottom: 1px solid gray;
-    padding: 20px 20px;
-    height: 15px;
-    border-radius: 10px;
-    
+  justify-content: flex-start;
+  margin: 10px auto;
+  width: 95%;
+  border-bottom: 1px solid gray;
+  padding: 14px 37px;
+  border-radius: 10px;
 }
 .file-name {
   color: blue;
 }
-p{
- padding: 4px 10px;   
+p {
+  padding: 4px 10px;
 }
 .card-body-content {
   width: 95%;
-  padding: 10px 0 0 30px;
+  padding: 10px 0 15px 30px;
   margin: -27px auto;
 }
 #headings {

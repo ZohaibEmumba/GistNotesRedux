@@ -34,3 +34,20 @@ td {
     justify-content: center;
     align-self: center;
   }
+  #gists-icons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    height: 50px;
+  }
+  #gists-icons i {
+    justify-content: center;
+    align-content: center;
+    align-self: center;
+    cursor: pointer;
+  }
+  
+  #gists-icons .fa-star,
+  .fa-code-branch {
+    color: #5acba1;
+  }

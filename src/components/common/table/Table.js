@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { checkGistStar } from '../../../utils/fetchUtils';
 import "./style.css";
 
 class Table extends Component {
@@ -6,6 +7,7 @@ class Table extends Component {
     super(props);
     this.state = {
       date: new Date("2021-01-09T14:56:23"),
+      alreadyChecked : true
     };
     this.showUniqueGistRecord =  this.showUniqueGistRecord.bind(this);
   }
@@ -13,6 +15,11 @@ class Table extends Component {
   showUniqueGistRecord (id) {
     window.location = `/getGist?Id=${id}`;
   }
+  // componentDidMount(e) {
+  //   let gist_id = e.target.parentNode.parentNode.id;
+  //   console.log(gist_id)
+  //   // checkGistStar(id)
+  // }
 
   render() {
     const { publicGistsDisplay , privateGistsDisplay } = this.props;
@@ -62,6 +69,11 @@ class Table extends Component {
           <td>{date.toLocaleTimeString()}</td>
           <td>{Object.keys(gist?.files)[0]}</td>
           <td>{gist?.description}</td>
+          <td id="gists-icons">
+                      {/* <i className="fas fa-star" onClick={this.starGist}></i> */}
+                      <i className="far fa-star"></i>
+                    <i className="fas fa-code-branch"></i>
+            </td>
         </tr>
       ))): (publicGistsDisplay.map((gist, index) => (
           <tr key={index} 

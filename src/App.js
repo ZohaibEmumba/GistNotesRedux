@@ -6,6 +6,8 @@ import Login from "./components/login/login";
 import HomePage from "./components/homepage/HomePage";
 import UniqueGist from "./components/common/uniquegist/UniqueGist";
 import ProfilePage from "./components/profilepage/ProfilePage";
+import CreateGists from "./components/creategist/CreateGist";
+import UpdateAGist from './components/editgist/UpdateGist';
 
 class App extends Component {
   render() {
@@ -18,6 +20,8 @@ class App extends Component {
             <Route path="/login" element={<Login />} />
             <Route path="/profilePage" element={<ProfilePage />} />
             <Route path="/getGist/" element={<UniqueGist />} />
+            <Route path="/create-a-gist/" element={<CreateGists />} />
+            <Route path="/editGist/" element={<UpdateAGist /> } />
           </Routes>
         </Router>
       </div>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./style.css";
-import { getPublicGist } from "../../../utils/fetchUtils";
+import { getPublicGist , delAGist } from "../../../utils/fetchUtils";
 
 export default class UniqueGist extends Component {
   constructor(props) {
@@ -10,6 +10,8 @@ export default class UniqueGist extends Component {
       loading: false,
     };
     this.getGistData = this.getGistData.bind(this);
+    this.delGist = this.delGist.bind(this);
+    this.updateGist = this.updateGist.bind(this);
   }
 
   getGistData = async () => {
@@ -23,6 +25,20 @@ export default class UniqueGist extends Component {
       })
     );
   };
+
+  delGist = async () => {
+    const {uniqueData} = this.state;
+    let gist_id = uniqueData?.id;
+    let delGist = await delAGist(gist_id).then(data => console.log(data));   
+    window.location = `/profilePage`;
+  };
+
+  updateGist = (e) => {
+    e.preventDefault();
+    const {uniqueData} =  this.state;
+    let gist_Id =uniqueData?.id;
+    window.location= `/editGist?gist_Id=${gist_Id}`;
+  }
 
   componentDidMount = () => {
     this.getGistData();
@@ -68,6 +84,13 @@ export default class UniqueGist extends Component {
             </div>
 
             <div className="gist-icons">
+            <span style={{ color: "blue" }}>
+                <i className="far fa-edit" onClick={this.updateGist}></i> Edit
+              </span>
+              <span style={{ color: "blue" }}>
+                <i className="far fa-trash-alt" onClick={this.delGist}></i>{" "}
+                Delete
+              </span>
               <div className="icons1">
                 <span style={{ color: "blue" }}>
                   <i className="far fa-star"></i> Star
