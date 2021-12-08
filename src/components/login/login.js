@@ -21,7 +21,7 @@ class Login extends Component {
         const val = loginAuthUser(userName).then(data =>{  
           const {login} = data ;
           if(login === userName){
-              //  this.props.setUserData(userName)
+               this.props.setUserData(userName)
               window.location = `/profilePage` ;
           }
           else{
