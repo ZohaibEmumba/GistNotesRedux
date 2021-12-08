@@ -2,7 +2,7 @@ import axios from "axios";
 
 //auth user API loginng in
 const BASE_URL = "https://api.github.com";
-const PAT = "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";
+const PAT = "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";
 const userName = "Zohaibkhattak15";
 
 export const loginAuthUser = async (userName) => {
@@ -62,32 +62,33 @@ export const delAGist = async (id) => {
       },
     })
     .then((data) => data.data);
-    return delAGist;
+  return delAGist;
 };
 
 export const updateAGist = async (id, disp) => {
-  const updateGists = await axios.patch(
-    `${BASE_URL}/gists/${id}`,
-    {
-      id: id,
-      description: disp,
-    },
-    {
-      headers: {
-        Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
+  const updateGists = await axios
+    .patch(
+      `${BASE_URL}/gists/${id}`,
+      {
+        id: id,
+        description: disp,
       },
-    }
-  ).then(data => console.log(data));
+      {
+        headers: {
+          Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
+        },
+      }
+    )
+    .then((data) => console.log(data));
   return updateGists;
 };
 export const getGistObj = async (id) => {
-    const getGists = await axios.get(
-        `${BASE_URL}/gists/${id} `,
-        {
-            headers: {
-              Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
-            },
-          }
-      ).then(data => data.data);
-      return getGists;
-}
+  const getGists = await axios
+    .get(`${BASE_URL}/gists/${id} `, {
+      headers: {
+        Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
+      },
+    })
+    .then((data) => data.data);
+  return getGists;
+};

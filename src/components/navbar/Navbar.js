@@ -31,11 +31,11 @@ export default class Navbar extends Component {
             <div className="navbar-search-section">
               <SearchBar />
               {
-                userName === "Zohaibkhattak15" ? (
+                userName === "" ? (
                 <Dropdown />
               ) : (
                  <Link to="/login">
-                    <button className="navbar-login-button">Login</button>
+                    <button className="navbar-login-button" onClick= {() =>userName === " "  }>Login</button>
                  </Link>
               )}
             </div>

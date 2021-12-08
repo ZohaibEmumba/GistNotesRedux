@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import PrivateGists from '../profilepage/privategists/PrivateGists'
+import PrivateGists from './privategists/PrivateGists'
 
-export default class ProfilePage extends Component {
+export default class NewsFeedPage extends Component {
     render() {
         return (
             <div>

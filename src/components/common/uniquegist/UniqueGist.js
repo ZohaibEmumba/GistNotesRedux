@@ -30,7 +30,7 @@ export default class UniqueGist extends Component {
     const {uniqueData} = this.state;
     let gist_id = uniqueData?.id;
     let delGist = await delAGist(gist_id).then(data => console.log(data));   
-    window.location = `/profilePage`;
+    window.location = `/newsfeed`;
   };
 
   updateGist = (e) => {

@@ -27,7 +27,7 @@ export default class CreateGists extends Component {
         },
       };
       createAGist(gistData);
-      window.location = `/profilePage`;
+      window.location = `/newsfeed`;
   };
 
   render() {

@@ -22,7 +22,7 @@ class Login extends Component {
           const {login} = data ;
           if(login === userName){
                this.props.setUserData(userName)
-              window.location = `/profilePage` ;
+              window.location = `/newsfeed` ;
           }
           else{
             alert("sorry Wrong username is given to us ..........")

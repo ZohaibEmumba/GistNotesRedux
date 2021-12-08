@@ -17,7 +17,7 @@ export default class UpdateGist extends Component {
     const gist_id = queryParams.get("gist_Id");
     const { description } = this.state.uniqueData;
     let val = await updateAGist(gist_id, description);
-    window.location = `/profilePage`;
+    window.location = `/newsfeed`;
   };
   getAGist = async () => {
     const queryParams = new URLSearchParams(window.location.search);

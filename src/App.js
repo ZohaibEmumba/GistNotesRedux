@@ -5,7 +5,7 @@ import Navbar from "./components/navbar/Navbar";
 import Login from "./components/login/login";
 import HomePage from "./components/homepage/HomePage";
 import UniqueGist from "./components/common/uniquegist/UniqueGist";
-import ProfilePage from "./components/profilepage/ProfilePage";
+import NewsFeedPage from "./components/newsfeed/NewsFeedPage";
 import CreateGists from "./components/creategist/CreateGist";
 import UpdateAGist from './components/editgist/UpdateGist';
 
@@ -18,7 +18,7 @@ class App extends Component {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/profilePage" element={<ProfilePage />} />
+            <Route path="/newsfeed" element={<NewsFeedPage />} />
             <Route path="/getGist/" element={<UniqueGist />} />
             <Route path="/create-a-gist/" element={<CreateGists />} />
             <Route path="/editGist/" element={<UpdateAGist /> } />

@@ -52,7 +52,7 @@ export default class Dropdown extends Component {
                   {authRecord?.login}
                 </li>
                 <hr />
-                <Link to="/profilePage">
+                <Link to="/newsfeed">
                   <li className="dropdown-menu__item">Your Gists</li>
                 </Link>
                 <Link to="/get-stared-gists">
