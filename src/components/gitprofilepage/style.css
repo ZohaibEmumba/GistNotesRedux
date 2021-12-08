@@ -1,0 +1,96 @@
+.whole-card-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+.profile-col {
+  display: flex;
+  gap: 30px;
+}
+.whole-section {
+  display: flex;
+  width: 90%;
+  margin: 100px 0px 20px auto;
+}
+.card-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-left {
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+  width: 20%;
+  border-right: 1px solid lightgray;
+  padding: 20px 30px;
+}
+#profile-pic {
+  align-self: center;
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+}
+#heading-name {
+  text-align: start;
+  font-size: 30px;
+}
+
+#button {
+  padding: 15px 80px;
+  background-color: white;
+  border: 1px solid gray;
+  color: blue;
+  font-size: 15px;
+  cursor: pointer;
+}
+.gist-icons {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+.gist-icons .icons1 {
+  display: flex;
+  gap: 10px;
+  height: 25px;
+  cursor: pointer;
+}
+.gist-icons .icons2 {
+  display: flex;
+  gap: 10px;
+  height: 25px;
+  cursor: pointer;
+}
+.profile-section {
+  display: flex;
+  gap: 20px;
+}
+
+#content-body {
+  box-shadow: 0px 5px 18px #c9c7c7;
+  width: 130%;
+  margin: 26px 50px;
+  border-radius: 5px;
+}
+#content-body .card-body {
+  justify-content: flex-start;
+  margin-top: 5px;
+  width: 96%;
+  border-bottom: 1px solid gray;
+  padding: 15px 20px;
+  height: 22px;
+  border-radius: 5px;
+}
+#content-body .file-name {
+  color: blue;
+}
+#content-body .card-body-content {
+  width: 100%;
+  padding: 5px 80px;
+  margin: -27px auto;
+}
+.left-sec {
+  display: flex;
+  width: 130%;
+  justify-content: space-around;
+  flex-direction: row;
+}

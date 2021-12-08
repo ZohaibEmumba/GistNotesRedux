@@ -63,7 +63,7 @@ export default class Dropdown extends Component {
                 </Link>
                 <li className="dropdown-menu__item">Help</li>
                 <hr></hr>
-                <Link to="/githubProfile">
+                <Link to="/github-profile-page">
                   <li className="dropdown-menu__item">Your Github Profile</li>
                 </Link>
                 <li

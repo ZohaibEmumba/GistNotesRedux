@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./style.css";
-import { getPublicGist , delAGist } from "../../../utils/fetchUtils";
+import { getPublicGist, delAGist } from "../../../utils/fetchUtils";
+import IconsDisp from "./iconsDisp/IconsDisp";
+
 
 export default class UniqueGist extends Component {
   constructor(props) {
@@ -27,18 +29,18 @@ export default class UniqueGist extends Component {
   };
 
   delGist = async () => {
-    const {uniqueData} = this.state;
+    const { uniqueData } = this.state;
     let gist_id = uniqueData?.id;
-    let delGist = await delAGist(gist_id).then(data => console.log(data));   
+    let delGist = await delAGist(gist_id).then((data) => console.log(data));
     window.location = `/newsfeed`;
   };
 
   updateGist = (e) => {
     e.preventDefault();
-    const {uniqueData} =  this.state;
-    let gist_Id =uniqueData?.id;
-    window.location= `/editGist?gist_Id=${gist_Id}`;
-  }
+    const { uniqueData } = this.state;
+    let gist_Id = uniqueData?.id;
+    window.location = `/editGist?gist_Id=${gist_Id}`;
+  };
 
   componentDidMount = () => {
     this.getGistData();
@@ -54,11 +56,12 @@ export default class UniqueGist extends Component {
     if (files !== undefined) {
       Object.values(files).map((file) => {
         filename = file.filename;
-        content = file.content
+        content = file.content;
       });
       myContentArray = content.split("\n");
     }
-
+    const dispEditAndUpdateIcons =
+      uniqueData?.owner?.login === "Zohaibkhattak15"? <IconsDisp /> : null;
     return (
       <>
         <div className="whole-card-section">
@@ -84,13 +87,7 @@ export default class UniqueGist extends Component {
             </div>
 
             <div className="gist-icons">
-            <span style={{ color: "blue" }}>
-                <i className="far fa-edit" onClick={this.updateGist}></i> Edit
-              </span>
-              <span style={{ color: "blue" }}>
-                <i className="far fa-trash-alt" onClick={this.delGist}></i>{" "}
-                Delete
-              </span>
+              {dispEditAndUpdateIcons}
               <div className="icons1">
                 <span style={{ color: "blue" }}>
                   <i className="far fa-star"></i> Star
@@ -138,9 +135,13 @@ export default class UniqueGist extends Component {
                     return (
                       <span key={index}>
                         {" "}
-                        
                         <p>
-                        <span style={{fontWeight: '700' , marginRight:'10px'} }>{++index}</span> {content}{" "}
+                          <span
+                            style={{ fontWeight: "700", marginRight: "10px" }}
+                          >
+                            {++index}
+                          </span>{" "}
+                          {content}{" "}
                         </p>{" "}
                       </span>
                     );

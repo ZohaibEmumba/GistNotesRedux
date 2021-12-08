@@ -10,7 +10,7 @@ const initialState = {
 const reducer = ( state = initialState , action) => {
     switch(action.types){
         case LOGIN:
-            localStorage.setItem("token", JSON.stringify( state.PAT = action.payload));
+            // localStorage.setItem("token", JSON.stringify( state.PAT = action.payload));
             return { ...state, 
                 token: action.payload , 
                 userName : action.payload 
