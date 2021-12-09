@@ -3,7 +3,6 @@ import "./style.css";
 import { getPublicGist, delAGist } from "../../../utils/fetchUtils";
 import IconsDisp from "./iconsDisp/IconsDisp";
 
-
 export default class UniqueGist extends Component {
   constructor(props) {
     super(props);
@@ -60,8 +59,8 @@ export default class UniqueGist extends Component {
       });
       myContentArray = content.split("\n");
     }
-    const dispEditAndUpdateIcons =
-      uniqueData?.owner?.login === "Zohaibkhattak15"? <IconsDisp /> : null;
+    // const dispEditAndUpdateIcons =
+    //   uniqueData?.owner?.login === "Zohaibkhattak15" ? <IconsDisp /> : null;
     return (
       <>
         <div className="whole-card-section">
@@ -87,7 +86,14 @@ export default class UniqueGist extends Component {
             </div>
 
             <div className="gist-icons">
-              {dispEditAndUpdateIcons}
+              {/* {dispEditAndUpdateIcons} */}
+              <span style={{ color: "blue" }}>
+                <i className="far fa-edit" onClick={this.updateGist}></i> Edit
+              </span>
+              <span style={{ color: "blue" }}>
+                <i className="far fa-trash-alt" onClick={this.delGist}></i>{" "}
+                Delete
+              </span>
               <div className="icons1">
                 <span style={{ color: "blue" }}>
                   <i className="far fa-star"></i> Star
