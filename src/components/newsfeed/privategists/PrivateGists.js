@@ -23,7 +23,7 @@ class PrivateGists extends Component {
         loading: false,
         privateRecord: data,
       });
-      console.log(this.state.privateRecord)
+      // console.log(this.state.privateRecord)
     });
   };
   listToggle = () => {

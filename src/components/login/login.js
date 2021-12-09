@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import {loginAuthUser} from '../../utils/fetchUtils';
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import {login} from '../../redux/actions/actions';
 import "./style.css";
 
 class Login extends Component {
@@ -17,17 +19,20 @@ class Login extends Component {
     }
     getLogin = (e) => {
         e.preventDefault();
+
         const {userName} = this.state;
-        const val = loginAuthUser(userName).then(data =>{  
-          const {login} = data ;
-          if(login === userName){
-               this.props.setUserData(userName)
-               window.location = `/newsfeed` ;
-          }
-          else{
-            alert("sorry Wrong username is given to us ..........")
-          }
-        });
+         this.props.login(userName);
+
+
+        // const val = loginAuthUser(userName).then(data =>{  
+        //   const {login} = data ;
+        //   if(login === userName){
+             window.location = `/newsfeed` ;
+        //   }
+        //   else{
+        //     alert("sorry Wrong username is given to us ..........")
+        //   }
+        // });
 
       };
 
@@ -77,18 +82,11 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        token : state.loginReducer
-    }
+        user : state.authUserRec
+         }
 }
 const mapDispatchToProps = (dispatch) => {
-    return ({
-        setUserData : (userName) => {
-           dispatch({
-             type : "LOGIN",
-             payload: userName
-           })
-         }
-    })
+    return bindActionCreators({ login : login} , dispatch)
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Login)
 

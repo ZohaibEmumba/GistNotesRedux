@@ -2,7 +2,7 @@ import axios from "axios";
 
 //auth user API loginng in
 const BASE_URL = "https://api.github.com";
-const PAT = "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";
+const PAT = "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";
 const userName = "Zohaibkhattak15";
 
 export const loginAuthUser = async (userName) => {
@@ -39,9 +39,20 @@ export const privateGistsRecord = async () => {
   return privateGistsRecord;
 };
 
-// const checkGistStar = async () => {
-//     const checkGistStared = await axios(`${BASE_URL}/gists/${GIST_ID}/star`)
-// }
+export const checkGistStar = async (gist_id) => {
+    console.log(gist_id);
+    const checkGistStared = await axios.get(`${BASE_URL}/gists/${gist_id}/star` , {
+      gist_id : gist_id },
+      {
+        headers: {
+          Authorization: `Basic ${btoa(
+            `${userName}:${PAT}`
+          )}`,
+        },
+      }
+      );
+    return checkGistStared;
+}
 
 export const createAGist = async (data) => {
   const json = JSON.stringify(data);
