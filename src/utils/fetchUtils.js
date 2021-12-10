@@ -2,7 +2,7 @@ import axios from "axios";
 
 //auth user API loginng in
 const BASE_URL = "https://api.github.com";
-const PAT = "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";
+const PAT = "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";
 const userName = "Zohaibkhattak15";
 
 export const loginAuthUser = async (userName) => {
@@ -39,22 +39,15 @@ export const privateGistsRecord = async () => {
   return privateGistsRecord;
 };
 
-export const sraechRecord = async (id) => {
-  console.log(id);
-  const searchedRowData = await axios
+export const sraechRecords = async (userName) => {
+  const searchedUserRecords= await axios
     .get(
-      `${BASE_URL}/gists/${id}`,
+      `${BASE_URL}/users/${userName}/gists?per_page=10`,
       {
-        gist_id: id,
-      },
-      {
-        headers: {
-          Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
-        },
-      }
-    )
-    .then((data) => console.log(data.data));
-  return searchedRowData;
+        username: userName,
+      })
+    .then((data) => data.data);
+  return searchedUserRecords;
 };
 
 export const createAGist = async (data) => {
@@ -111,5 +104,3 @@ export const getGistObj = async (id) => {
     .then((data) => data.data);
   return getGists;
 };
-
-

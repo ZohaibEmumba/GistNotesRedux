@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Login from "./components/login/login";
@@ -10,6 +9,7 @@ import CreateGists from "./components/creategist/CreateGist";
 import UpdateAGist from "./components/editgist/UpdateGist";
 import GithubProfile from "./components/gitprofilepage/GitProfilePage";
 import StaredGists from "./components/stargists/StaredGists";
+import "./App.css";
 
 class App extends Component {
   render() {
@@ -32,5 +32,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;

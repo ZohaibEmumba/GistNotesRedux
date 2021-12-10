@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { sraechRecord } from "../../../utils/fetchUtils";
+import { sraechRecords } from "../../../utils/fetchUtils";
 import "./style.css";
 
 class Table extends Component {
@@ -11,9 +11,9 @@ class Table extends Component {
       date: new Date("2021-01-09T14:56:23"),
       checkValue: "",
       BASE_URL: "https://api.github.com",
-      PAT: "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",
+      PAT: "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",
       userName: "Zohaibkhattak15",
-      starGist : ""
+      searchRecords : []
     };
     this.showUniqueGistRecord = this.showUniqueGistRecord.bind(this);
     this.checkGistStar = this.checkGistStar.bind(this);
@@ -25,19 +25,25 @@ class Table extends Component {
 
   checkGistStar = async (uniqueId) => {
     const { userName, PAT, BASE_URL } = this.state;
-    let val = await axios
+    
+    let checkStar = await axios
       .get(`${BASE_URL}/gists/${uniqueId}/star`, {
         headers: {
           Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
         },
-      }).then(data => data.data);
-    };
+      });
+      return 
+  };
+
+  componentDidMount() {
+    sraechRecords();
+  }
 
   render() {
     const { publicGistsDisplay, privateGistsDisplay } = this.props;
     const { date } = this.state;
-    
-
+    const filledStar = <i className="fas fa-star" />;
+    const unFilledStart = <i className="far fa-star" />;
     return (
       <>
         <section>
@@ -86,13 +92,11 @@ class Table extends Component {
                       <td>{Object.keys(gist?.files)[0]}</td>
                       <td>{gist?.description}</td>
                       <td id="gists-icons">
-                        <i
-                          className={
-                            this.checkGistStar(gist?.id) === ""
-                             ? "fas fa-star" : "far fa-star"
-                          }
-                        ></i>
-
+                        {true ? 
+                          filledStar
+                         : 
+                          unFilledStart
+                        }
                         <i className="fas fa-code-branch"></i>
                       </td>
                     </tr>
@@ -136,6 +140,7 @@ class Table extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state.searchValue)
   return {
     user: state,
   };
