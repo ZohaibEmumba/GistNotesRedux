@@ -6,7 +6,7 @@ class StaredGists extends Component {
             super();
             this.state = {
                 userName : "Zohaibkhattak15",
-                PAT:"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",
+                PAT:"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",
                 staredGists : [],
                 date: new Date("2021-01-09T14:56:23"),
 

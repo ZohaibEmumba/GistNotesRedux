@@ -1,6 +1,6 @@
 const initialState = {
   userName: "",
-  PAT: "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",
+  PAT: "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",
   isloggedin: false,
   searchVal: ""
 };

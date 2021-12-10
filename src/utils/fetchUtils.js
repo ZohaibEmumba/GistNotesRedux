@@ -2,7 +2,7 @@ import axios from "axios";
 
 //auth user API loginng in
 const BASE_URL = "https://api.github.com";
-const PAT = "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";
+const PAT = "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";
 const userName = "Zohaibkhattak15";
 
 export const loginAuthUser = async (userName) => {
