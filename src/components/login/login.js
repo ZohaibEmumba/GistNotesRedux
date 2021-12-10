@@ -1,61 +1,40 @@
 import React, { Component } from "react";
-import {loginAuthUser} from '../../utils/fetchUtils';
+import { loginAuthUser } from "../../utils/fetchUtils";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {login} from '../../redux/actions/actions';
+import { login } from "../../redux/actions/actions";
 import "./style.css";
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        userName: ""
+      userName: "",
     };
     this.getLogin = this.getLogin.bind(this);
     this.getUserName = this.getUserName.bind(this);
-}
-    getUserName = (e) => {
-        this.setState({userName : e.target.value})
-    }
-    getLogin = (e) => {
-        e.preventDefault();
+  }
+  getUserName = (e) => {
+    this.setState({ userName: e.target.value });
+  };
+  getLogin = (e) => {
+    e.preventDefault();
 
-        const {userName} = this.state;
-         this.props.login(userName);
-
-
-        // const val = loginAuthUser(userName).then(data =>{  
-        //   const {login} = data ;
-        //   if(login === userName){
-             window.location = `/newsfeed` ;
-        //   }
-        //   else{
-        //     alert("sorry Wrong username is given to us ..........")
-        //   }
-        // });
-
-      };
-
-    // axios(
-    //   `${process.env.REACT_APP_BASE_URL}/users/${this.state.userName}`
-    // ).then((data) => {
-    //   if (this.state.userName === data.data.login) {
-    //     this.setState({ authUserRecord: data.data });
-    //     localStorage.setItem(
-    //       "authData",
-    //       JSON.stringify(this.state.authUserRecord)
-    //     );
-    //     localStorage.setItem("userName", JSON.stringify(this.state.userName));
-    //     localStorage.setItem("token", JSON.stringify(this.state.PAT));
-    //     window.location.replace("/profilePage");
-    //   } else {
-    //     alert("Wrong Username and Password.......");
-    //   }
-    // });
-
-
+    const { userName } = this.state;
+    this.props.login(userName);
+    const val = loginAuthUser(userName).then((data) => {
+      const { login } = data;
+      console.log(login);
+      localStorage.setItem("userName", JSON.stringify(login));
+      if (login === userName) {
+        window.location = `/newsfeed`;
+      } else {
+        alert("sorry Wrong username....");
+      }
+    });
+  };
   render() {
-      const {userName} = this.state;
+    const { userName } = this.state;
     return (
       <section>
         <form className="login-form">
@@ -67,11 +46,7 @@ class Login extends Component {
             value={userName}
           />
 
-          <button
-            type="submit"
-            className="login"
-            onClick={this.getLogin}
-          >
+          <button type="submit" className="login" onClick={this.getLogin}>
             Login
           </button>
         </form>
@@ -79,15 +54,7 @@ class Login extends Component {
     );
   }
 }
-
-const mapStateToProps = (state) => {
-    return {
-        user : state.authUserRec
-         }
-}
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ login : login} , dispatch)
-}
-export default connect(mapStateToProps,mapDispatchToProps)(Login)
-
-
+  return bindActionCreators({ login: login }, dispatch);
+};
+export default connect(null, mapDispatchToProps)(Login);

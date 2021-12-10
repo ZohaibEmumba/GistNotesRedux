@@ -15,7 +15,8 @@ export default class Dropdown extends Component {
   }
 
   logOut = () => {
-    window.location.replace("/");
+    localStorage.clear();
+    window.location = "/";
   };
 
   getAuth = async () => {

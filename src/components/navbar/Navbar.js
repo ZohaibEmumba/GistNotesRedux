@@ -15,6 +15,7 @@ export default class Navbar extends Component {
   
   render() {
     const {userName} = this.state;
+    const myUserName = JSON.parse(localStorage.getItem("userName"));
     return (
       <>
         <section>
@@ -23,19 +24,18 @@ export default class Navbar extends Component {
               <Link to="/"> 
                 {" "}
                 <img src={Logo} alt="Emumba" className="navbar-logo-styling" onClick={() => {
-                    this.setState({userName : null})
-                   window.location.replace("/")
+                  localStorage.clear();
                   }}  />{" "}
               </Link> 
             </div>
             <div className="navbar-search-section">
               <SearchBar />
               {
-                userName === "" ? (
+                userName === myUserName ? (
                 <Dropdown />
               ) : (
                  <Link to="/login">
-                    <button className="navbar-login-button" onClick= {() =>userName === " "  }>Login</button>
+                    <button className="navbar-login-button" >Login</button>
                  </Link>
               )}
             </div>

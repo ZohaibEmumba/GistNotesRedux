@@ -87,13 +87,15 @@ export default class UniqueGist extends Component {
 
             <div className="gist-icons">
               {/* {dispEditAndUpdateIcons} */}
-              <span style={{ color: "blue" }}>
+             {uniqueData?.owner?.login === "Zohaibkhattak15 " ? (
+             <><span style={{ color: "blue" }}>
                 <i className="far fa-edit" onClick={this.updateGist}></i> Edit
               </span>
               <span style={{ color: "blue" }}>
                 <i className="far fa-trash-alt" onClick={this.delGist}></i>{" "}
                 Delete
               </span>
+              </>) : null}
               <div className="icons1">
                 <span style={{ color: "blue" }}>
                   <i className="far fa-star"></i> Star

@@ -5,15 +5,15 @@ const initialState = {
 };
 
 const LoginReducer = (state = initialState, action) => {
-  // console.log(action.payload)
   switch (action.type) {
     case "LOGIN":
+      console.log("zohaib I am here ");
       return {
-         ...state , 
-        userName :  action.payload
+        ...state,
+        userName: action.payload,
+        isloggedin: true,
       };
   }
-  return state;
 };
 
 export default LoginReducer;

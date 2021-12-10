@@ -2,7 +2,7 @@
 // import LoginReducer from "./LoginReducers";
 
 // const allReducers = combineReducers({
-//     authUserRec : LoginReducer
+//     LoginReducer
 // });
 
 // export default allReducers;

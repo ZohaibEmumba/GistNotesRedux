@@ -13,37 +13,16 @@ export default class Grid extends Component {
 
   render() {
     const { publicGistsDisplay, privateGistsDisplay } = this.props;
-
-    // const  privateFiles  = this.props.privateGistsDisplay;
-    // console.log(privateFiles)
-    //   let privateFilename;
-    //   let privateContent;
-    //   let myPrivateContentArray;
-
-    // if (privateFiles !== undefined) {
-    //   Object.values(privateFiles).map((file) => {
-    //     privateFilename = file.filename;
-    //     privateContent = file.content
-    //   });
-    //   console.log(privateContent)
-    //   myPrivateContentArray = privateContent.split("\n");
-    // }
-
-    //   const  {files} = publicGistsDisplay;
-    //      let filename;
-    //      let content;
-    //      let myContentArray;
-
-    // if (files !== undefined) {
-    //   Object.values(files).map((file) => {
-    //     filename = file.filename;
-    //     content = file.content;
-    //   });
-    //   // myContentArray = content.split("\n");
-
-    //       console.log(filename , content)
-
-    // }
+    let publicFiles;
+    let privateFiles;
+    if (publicGistsDisplay) {
+      publicFiles = publicGistsDisplay.map(
+        (files) => Object.keys(files.files)[0]
+      );
+    } else
+      privateFiles = privateGistsDisplay.map(
+        (files) => Object.keys(files.files)[0]
+      );
 
     return (
       <>
@@ -58,23 +37,25 @@ export default class Grid extends Component {
                   className="grid-display"
                 >
                   <div>
-                    {/* {myContentArray !== undefined
-                ? myContentArray?.map((content, index) => {
-                    return (
-                      <span key={index}>
-                        {" "}
-                        <p>
-                          <span
-                            style={{ fontWeight: "700", marginRight: "10px" }}
-                          >
-                            {++index}
-                          </span>{" "}
-                          {content}{" "}
-                        </p>{" "}
-                      </span>
-                    );
-                  })
-                : "No Content There......."} */}
+                    {publicFiles &&
+                      publicFiles?.map((content, index) => {
+                        return (
+                          <span key={index}>
+                            {" "}
+                            <p>
+                              <span
+                                style={{
+                                  fontWeight: "700",
+                                  marginRight: "10px",
+                                }}
+                              >
+                                {++index}
+                              </span>{" "}
+                              {content}{" "}
+                            </p>{" "}
+                          </span>
+                        );
+                      })}
                   </div>
                   <div className="card-footer">
                     <div>
@@ -106,19 +87,25 @@ export default class Grid extends Component {
                   className="grid-display"
                 >
                   <div>
-                    {/* {myPrivateContentArray !== undefined
-                ? myPrivateContentArray?.map((content, index) => {
-                    return (
-                      <span key={index}>
-                        {" "}
-                        
-                        <p>
-                        <span style={{fontWeight: '700' , marginRight:'10px'} }>{++index}</span> {content}{" "}
-                        </p>{" "}
-                      </span>
-                    );
-                  })
-                : "No Content There......."} */}
+                    {privateFiles &&
+                      privateFiles?.map((content, index) => {
+                        return (
+                          <span key={index}>
+                            {" "}
+                            <p>
+                              <span
+                                style={{
+                                  fontWeight: "700",
+                                  marginRight: "10px",
+                                }}
+                              >
+                                {++index}
+                              </span>{" "}
+                              {content}{" "}
+                            </p>{" "}
+                          </span>
+                        );
+                      })}
                   </div>
                   <div className="card-footer">
                     <div>

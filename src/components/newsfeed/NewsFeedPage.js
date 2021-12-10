@@ -11,11 +11,4 @@ class NewsFeedPage extends Component {
         )
     }
 }
-    const mapStateToProps = (state) =>{
-        // console.log(state)
-        return {
-            user : state.userName
-             }
-    }
-
-export default connect(mapStateToProps , null)(NewsFeedPage)
+export default connect(null)(NewsFeedPage)
