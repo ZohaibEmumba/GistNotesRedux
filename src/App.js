@@ -10,6 +10,7 @@ import UpdateAGist from "./components/editgist/UpdateGist";
 import GithubProfile from "./components/gitprofilepage/GitProfilePage";
 import StaredGists from "./components/stargists/StaredGists";
 import "./App.css";
+import FilterGists from "./components/filtergists/FilterGists";
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
             <Route path="/newsfeed" element={<NewsFeedPage />} />
             <Route path="/github-profile-page" element={<GithubProfile />} />
             <Route path="/getGist/" element={<UniqueGist />} />
+            <Route path="/getFilterGists/" element={<FilterGists />} />
             <Route path="/create-a-gist/" element={<CreateGists />} />
             <Route path="/get-stared-gists/" element={<StaredGists />} />
             <Route path="/editGist/" element={<UpdateAGist />} />

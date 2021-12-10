@@ -39,14 +39,12 @@ export const privateGistsRecord = async () => {
   return privateGistsRecord;
 };
 
-export const sraechRecords = async (userName) => {
-  const searchedUserRecords= await axios
-    .get(
-      `${BASE_URL}/users/${userName}/gists?per_page=10`,
-      {
-        username: userName,
-      })
-    .then((data) =>data.data);
+export const searchRecords = async (userName) => {
+  const searchedUserRecords = await axios
+    .get(`${BASE_URL}/users/${userName}/gists?per_page=10`, {
+      username: userName,
+    })
+    .then((data) => data.data);
   return searchedUserRecords;
 };
 
