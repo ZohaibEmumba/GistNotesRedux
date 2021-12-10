@@ -25,7 +25,7 @@ class Table extends Component {
 
   checkGistStar = async (uniqueId) => {
     const { userName, PAT, BASE_URL } = this.state;
-    
+
     let checkStar = await axios
       .get(`${BASE_URL}/gists/${uniqueId}/star`, {
         headers: {
@@ -35,12 +35,18 @@ class Table extends Component {
       return 
   };
 
-  componentDidMount() {
-    sraechRecords();
+  componentDidUpdate() {
+    const {user} = this.props ;
+    const {searchVal} = user; 
+    sraechRecords(searchVal).then(data => {
+      // this.setState({searchRecords : data})
+      console.log(data)
+    });
   }
 
   render() {
     const { publicGistsDisplay, privateGistsDisplay } = this.props;
+    const {searchRecords} = this.state;
     const { date } = this.state;
     const filledStar = <i className="fas fa-star" />;
     const unFilledStart = <i className="far fa-star" />;
@@ -140,7 +146,6 @@ class Table extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.searchValue)
   return {
     user: state,
   };

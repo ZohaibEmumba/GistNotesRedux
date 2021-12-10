@@ -14,7 +14,6 @@ class SearchBar extends Component {
   }
   getValue() {
     const { takeStateValue } = this.state;
-    console.log(takeStateValue);
     this.props.searchVal(takeStateValue);
   }
   render() {
