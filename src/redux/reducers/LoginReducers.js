@@ -2,18 +2,27 @@ const initialState = {
   userName: "",
   PAT: "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",
   isloggedin: false,
+  searchVal: ""
 };
 
-const LoginReducer = (state = initialState, action) => {
+const Reducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOGIN":
-      console.log("zohaib I am here ");
       return {
         ...state,
         userName: action.payload,
         isloggedin: true,
       };
+    case "SEARCH": {
+      // console.log(action)
+      return {
+        ...state,
+        searchVal : action.payload
+      }
+    }
+     default :
+      return state 
   }
 };
 
-export default LoginReducer;
+export default Reducer;

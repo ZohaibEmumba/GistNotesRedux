@@ -4,6 +4,7 @@ import { publicGistsRecord } from "../../../utils/fetchUtils";
 import Loader from "../../common/loader/Loader";
 import './style.css';
 import Grid from "../../common/grid/Grid";
+import { connect } from "react-redux";
 
 class PublicGists extends Component {
   constructor(props) {
@@ -69,5 +70,6 @@ class PublicGists extends Component {
     );
   }
 }
+
 
 export default PublicGists;

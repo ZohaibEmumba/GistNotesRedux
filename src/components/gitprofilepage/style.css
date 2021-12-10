@@ -91,7 +91,7 @@
 }
 .left-sec {
   display: flex;
-  width: 130%;
+  width: 170%;
   justify-content: space-around;
   flex-direction: row;
 }

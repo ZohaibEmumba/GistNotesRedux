@@ -2,7 +2,7 @@ import axios from "axios";
 
 //auth user API loginng in
 const BASE_URL = "https://api.github.com";
-const PAT = "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";
+const PAT = "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";
 const userName = "Zohaibkhattak15";
 
 export const loginAuthUser = async (userName) => {
@@ -39,7 +39,23 @@ export const privateGistsRecord = async () => {
   return privateGistsRecord;
 };
 
-
+export const sraechRecord = async (id) => {
+  console.log(id);
+  const searchedRowData = await axios
+    .get(
+      `${BASE_URL}/gists/${id}`,
+      {
+        gist_id: id,
+      },
+      {
+        headers: {
+          Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
+        },
+      }
+    )
+    .then((data) => console.log(data.data));
+  return searchedRowData;
+};
 
 export const createAGist = async (data) => {
   const json = JSON.stringify(data);
@@ -49,18 +65,23 @@ export const createAGist = async (data) => {
         Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
       },
     })
-    .then((data) => data.data , );
+    .then((data) => data.data);
 };
 
 export const delAGist = async (id) => {
-  const delAGist = axios
-    .delete(`${BASE_URL}/gists/${id}`, {
-      headers: {
-        Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
-      },
-    })
-    .then((data) => data.data);
-  return delAGist;
+  let check = window.confirm("Are You sure to want to delete the gist?");
+  if (check) {
+    const delAGist = axios
+      .delete(`${BASE_URL}/gists/${id}`, {
+        headers: {
+          Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
+        },
+      })
+      .then((data) => data.data);
+    return delAGist;
+  } else {
+    window.location = `/newsfeed`;
+  }
 };
 
 export const updateAGist = async (id, disp) => {
@@ -90,3 +111,5 @@ export const getGistObj = async (id) => {
     .then((data) => data.data);
   return getGists;
 };
+
+

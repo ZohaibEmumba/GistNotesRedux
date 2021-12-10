@@ -1,11 +1,16 @@
 
 export const login = (name) => {
-  console.log(name)
   return {
     type: "LOGIN",
     payload : name
   }
 }
-  export const logout = () => ({
+export const searchVal = (val) => {
+  return {
+    type: "SEARCH",
+    payload : val
+  }
+}
+export const logout = () => ({
     type: "LOGOUT",
   });

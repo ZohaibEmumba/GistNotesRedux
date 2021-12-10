@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
-// import { checkGistStar } from "../../../utils/fetchUtils";
+import { connect } from "react-redux";
+import { sraechRecord } from "../../../utils/fetchUtils";
 import "./style.css";
 
 class Table extends Component {
@@ -10,8 +11,9 @@ class Table extends Component {
       date: new Date("2021-01-09T14:56:23"),
       checkValue: "",
       BASE_URL: "https://api.github.com",
-      PAT: "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",
+      PAT: "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",
       userName: "Zohaibkhattak15",
+      starGist : ""
     };
     this.showUniqueGistRecord = this.showUniqueGistRecord.bind(this);
     this.checkGistStar = this.checkGistStar.bind(this);
@@ -23,19 +25,18 @@ class Table extends Component {
 
   checkGistStar = async (uniqueId) => {
     const { userName, PAT, BASE_URL } = this.state;
-    // console.log(uniqueId);
     let val = await axios
       .get(`${BASE_URL}/gists/${uniqueId}/star`, {
         headers: {
           Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
         },
-      })
-      .then((data) => console.log(data));
-  };
+      }).then(data => data.data);
+    };
 
   render() {
     const { publicGistsDisplay, privateGistsDisplay } = this.props;
     const { date } = this.state;
+    
 
     return (
       <>
@@ -56,55 +57,46 @@ class Table extends Component {
             </thead>
             <tbody>
               {privateGistsDisplay
-                ? privateGistsDisplay.map(
-                    (gist, index) => (
-                      // console.log(gist.id),
-                      (
-                        <tr
-                          key={index}
-                          onClick={() => {
-                            this.showUniqueGistRecord(gist?.id);
-                          }}
-                        >
-                          <td>
+                ? privateGistsDisplay.map((gist, index) => (
+                    <tr
+                      key={index}
+                      onClick={() => {
+                        this.showUniqueGistRecord(gist?.id);
+                      }}
+                    >
+                      <td>
+                        {" "}
+                        <input type="checkbox" />{" "}
+                      </td>
+                      <td>
+                        <div className="username-section">
+                          <span>
                             {" "}
-                            <input type="checkbox" />{" "}
-                          </td>
-                          <td>
-                            <div className="username-section">
-                              <span>
-                                {" "}
-                                <img
-                                  className="profile-img"
-                                  src={gist?.owner?.avatar_url}
-                                  alt="Profile Pics"
-                                />
-                              </span>
-                              <span className="username">
-                                {gist?.owner?.login}
-                              </span>
-                            </div>
-                          </td>
-                          <td>{date.toLocaleDateString()}</td>
-                          <td>{date.toLocaleTimeString()}</td>
-                          <td>{Object.keys(gist?.files)[0]}</td>
-                          <td>{gist?.description}</td>
-                          <td id="gists-icons">
-                            <i
-                              className={
-                                // this.checkGistStar(gist?.id) 
-                                true
-                                  ? "fas fa-star"
-                                  : "far fa-star"
-                              }
-                            ></i>
+                            <img
+                              className="profile-img"
+                              src={gist?.owner?.avatar_url}
+                              alt="Profile Pics"
+                            />
+                          </span>
+                          <span className="username">{gist?.owner?.login}</span>
+                        </div>
+                      </td>
+                      <td>{date.toLocaleDateString()}</td>
+                      <td>{date.toLocaleTimeString()}</td>
+                      <td>{Object.keys(gist?.files)[0]}</td>
+                      <td>{gist?.description}</td>
+                      <td id="gists-icons">
+                        <i
+                          className={
+                            this.checkGistStar(gist?.id) === ""
+                             ? "fas fa-star" : "far fa-star"
+                          }
+                        ></i>
 
-                            <i className="fas fa-code-branch"></i>
-                          </td>
-                        </tr>
-                      )
-                    )
-                  )
+                        <i className="fas fa-code-branch"></i>
+                      </td>
+                    </tr>
+                  ))
                 : publicGistsDisplay.map((gist, index) => (
                     <tr
                       key={index}
@@ -143,4 +135,10 @@ class Table extends Component {
   }
 }
 
-export default Table;
+const mapStateToProps = (state) => {
+  return {
+    user: state,
+  };
+};
+
+export default connect(mapStateToProps, null)(Table);

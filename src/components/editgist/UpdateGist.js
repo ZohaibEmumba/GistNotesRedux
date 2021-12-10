@@ -31,6 +31,8 @@ export default class UpdateGist extends Component {
     this.getAGist();
   };
   render() {
+     const {uniqueData} = this.state;
+
     return (
       <section>
         <form className="create-gist">
@@ -41,9 +43,8 @@ export default class UpdateGist extends Component {
               this.setState({ uniqueData: { description: e.target.value } })
             }
             placeholder="Enter gist Discription..."
-            value={this.state.uniqueData.description}
+            value={uniqueData.description}
           />
-          <button>Add File</button>
           <button onClick={this.editGist}>Save Gist</button>
         </form>
       </section>

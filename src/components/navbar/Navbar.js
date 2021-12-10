@@ -21,12 +21,10 @@ export default class Navbar extends Component {
         <section>
           <nav className="navBar">
             <div className="left-Section">
-              <Link to="/"> 
                 {" "}
                 <img src={Logo} alt="Emumba" className="navbar-logo-styling" onClick={() => {
-                  localStorage.clear();
+      
                   }}  />{" "}
-              </Link> 
             </div>
             <div className="navbar-search-section">
               <SearchBar />
