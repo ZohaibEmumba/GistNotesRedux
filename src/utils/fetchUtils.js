@@ -2,7 +2,7 @@ import axios from "axios";
 
 //auth user API loginng in
 const BASE_URL = "https://api.github.com";
-const PAT = "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";
+const PAT = "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";
 const userName = "Zohaibkhattak15";
 
 export const loginAuthUser = async (userName) => {
@@ -101,4 +101,23 @@ export const getGistObj = async (id) => {
     })
     .then((data) => data.data);
   return getGists;
+};
+
+export const  getStaredGists = async () => {
+  const getStaredGists = await axios
+  .get(`https://api.github.com/gists/starred`, {
+    headers: {
+      Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
+    },
+  }).then(data => data.data);
+  return getStaredGists;
+} 
+
+export const checkGistStared = async (uniqueId) => {
+  const checkStar = await axios.get(`${BASE_URL}/gists/${uniqueId}/star`, {
+    headers: {
+      Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
+    },
+  }).then(data => data?.status);
+  return checkStar;
 };

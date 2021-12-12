@@ -24,8 +24,6 @@ class Login extends Component {
     this.props.login(userName);
     const val = loginAuthUser(userName).then((data) => {
       const { login } = data;
-      console.log(login);
-      localStorage.setItem("userName", JSON.stringify(login));
       if (login === userName) {
         window.location = `/newsfeed`;
       } else {
@@ -54,6 +52,7 @@ class Login extends Component {
     );
   }
 }
+
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ login: login }, dispatch);
 };

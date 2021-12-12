@@ -12,7 +12,9 @@ th {
   background-color: #def5ec;
   padding: 20px 20px 20px 20px;
 }
-
+td:first-child{
+  text-align: center;
+}
 td {
   padding: 10px 10px 10px 10px;
   border-bottom: 2px solid #def5ec;

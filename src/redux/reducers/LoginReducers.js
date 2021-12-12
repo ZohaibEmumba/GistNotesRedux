@@ -1,11 +1,11 @@
 const initialState = {
   userName: "",
-  PAT: "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",
+  PAT: "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",
   isloggedin: false,
-  searchVal: ""
+  searchVal: "",
 };
 
-const Reducer = (state = initialState, action) => {
+const LoginReducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOGIN":
       return {
@@ -14,15 +14,21 @@ const Reducer = (state = initialState, action) => {
         isloggedin: true,
       };
     case "SEARCH": {
-      // console.log(action)
       return {
         ...state,
-        searchVal : action.payload
+        searchVal: action.payload,
+      };
+    }
+    case "LOGOUT":{
+      return {
+        ...state,
+        userName: "",
+        isloggedin: false
       }
     }
-     default :
-      return state 
+    default:
+      return state;
   }
 };
 
-export default Reducer;
+export default LoginReducer;

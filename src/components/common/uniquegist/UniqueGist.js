@@ -87,15 +87,19 @@ export default class UniqueGist extends Component {
 
             <div className="gist-icons">
               {/* {dispEditAndUpdateIcons} */}
-             {uniqueData?.owner?.login === JSON.parse(localStorage.getItem("userName")) ? (
-             <><span style={{ color: "blue" }}>
-                <i className="far fa-edit" onClick={this.updateGist}></i> Edit
-              </span>
-              <span style={{ color: "blue" }}>
-                <i className="far fa-trash-alt" onClick={this.delGist}></i>{" "}
-                Delete
-              </span>
-              </>) : null}
+              {uniqueData?.owner?.login ===
+              JSON.parse(localStorage.getItem("userName")) ? (
+                <>
+                  <span style={{ color: "blue" }}>
+                    <i className="far fa-edit" onClick={this.updateGist}></i>{" "}
+                    Edit
+                  </span>
+                  <span style={{ color: "blue" }}>
+                    <i className="far fa-trash-alt" onClick={this.delGist}></i>{" "}
+                    Delete
+                  </span>
+                </>
+              ) : null}
               <div className="icons1">
                 <span style={{ color: "blue" }}>
                   <i className="far fa-star"></i> Star

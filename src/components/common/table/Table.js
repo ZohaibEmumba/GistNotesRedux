@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { checkGistStared } from "../../../utils/fetchUtils";
 import "./style.css";
 
 class Table extends Component {
@@ -9,28 +9,14 @@ class Table extends Component {
     this.state = {
       date: new Date("2021-01-09T14:56:23"),
       checkValue: "",
-      BASE_URL: "https://api.github.com",
-      PAT: "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",
-      userName: "Zohaibkhattak15",
       publicGists: this.props.publicGistsDisplay,
     };
     this.showUniqueGistRecord = this.showUniqueGistRecord.bind(this);
-    this.checkGistStar = this.checkGistStar.bind(this);
+    // this.checkGistStar = this.checkGistStar.bind(this);
   }
 
-  showUniqueGistRecord(id) {
+  showUniqueGistRecord = (id) => {
     window.location = `/getGist?Id=${id}`;
-  }
-
-  checkGistStar = async (uniqueId) => {
-    const { userName, PAT, BASE_URL } = this.state;
-
-    let checkStar = await axios.get(`${BASE_URL}/gists/${uniqueId}/star`, {
-      headers: {
-        Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
-      },
-    });
-    return;
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -40,12 +26,17 @@ class Table extends Component {
       window.location = `/getFilterGists?uName=${searchVal}`;
     }
   }
+
+  componentWillUnmount() {
+    
+  }
   render() {
     const { privateGistsDisplay } = this.props;
     const { publicGists, date } = this.state;
     const filledStar = <i className="fas fa-star" />;
     const unFilledStart = <i className="far fa-star" />;
- return (
+
+    return (
       <>
         <section>
           <table className="disp-gists-table">
@@ -93,7 +84,9 @@ class Table extends Component {
                       <td>{Object.keys(gist?.files)[0]}</td>
                       <td>{gist?.description}</td>
                       <td id="gists-icons">
-                        {true ? filledStar : unFilledStart}
+                        {checkGistStared(gist?.id) === 204
+                          ? filledStar
+                          : unFilledStart}
                         <i className="fas fa-code-branch"></i>
                       </td>
                     </tr>

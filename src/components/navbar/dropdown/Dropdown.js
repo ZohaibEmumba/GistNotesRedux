@@ -1,9 +1,12 @@
 import { Component } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { loginAuthUser } from "../../../utils/fetchUtils";
+import { bindActionCreators } from "redux";
+import { logout } from "../../../redux/actions/actions";
 import "./style.css";
 
-export default class Dropdown extends Component {
+class Dropdown extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,7 +18,7 @@ export default class Dropdown extends Component {
   }
 
   logOut = () => {
-    localStorage.clear();
+    this.props.logout();
     window.location = "/";
   };
 
@@ -81,3 +84,9 @@ export default class Dropdown extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ logout: logout }, dispatch);
+};
+
+export default connect(null,mapDispatchToProps)(Dropdown);

@@ -1,35 +1,26 @@
-import axios from 'axios';
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { getStaredGists } from "../../utils/fetchUtils";
+import Loader from '../common/loader/Loader'
 
 class StaredGists extends Component {
-    constructor() {
-            super();
-            this.state = {
-                userName : "Zohaibkhattak15",
-                PAT:"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",
-                staredGists : [],
-                date: new Date("2021-01-09T14:56:23"),
+  constructor() {
+    super();
+    this.state = {
+      staredGists: [],
+      date: new Date("2021-01-09T14:56:23"),
+      loading: false,
+    };
+  }
 
-            }
-            this.getStaredGists = this.getStaredGists.bind(this);
-    }
-    async getStaredGists(){
-        const getStaredGists = await axios
-        .get(`https://api.github.com/gists/starred`, {
-          headers: {
-            Authorization: `Basic ${btoa(`${this.state.userName}:${this.state.PAT}`)}`,
-          },
-        });
-        this.setState({staredGists: getStaredGists.data})
-    } 
-   componentDidMount(){
-        this.getStaredGists();
-    }
-    render() {
-        const {staredGists , date} = this.state;
-        return (
-            <>
-                <section style={{marginTop : '100px'}}>
+  componentDidMount() {
+    this.setState({loading : true})
+    getStaredGists().then((data) => this.setState({ staredGists: data , loading : false }));
+  }
+  render() {
+    const { staredGists, date , loading } = this.state;
+    return (
+      <>
+        { loading ?   <Loader />  :  <section style={{ marginTop: "100px" }}>
           <table className="disp-gists-table">
             <thead>
               <tr>
@@ -90,10 +81,10 @@ class StaredGists extends Component {
                 : "No Stared Gists Found there"}
             </tbody>
           </table>
-        </section>
-            </>
-        )
-    }
+        </section>}
+      </>
+    );
+  }
 }
 
 export default StaredGists;

@@ -1,40 +1,43 @@
-import  { Component } from "react";
+import { Component } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/emumba-logo.png";
 import Dropdown from "./dropdown/Dropdown";
 import SearchBar from "./searchBar/Searchbar";
 import "./style.css";
 
-export default class Navbar extends Component {
-  constructor(props){
+class Navbar extends Component {
+  constructor(props) {
     super(props);
     this.state = {
-      userName : "Zohaibkhattak15"
-    }
+      userName: "Zohaibkhattak15",
+    };
   }
-  
+
   render() {
-    const {userName} = this.state;
-    const myUserName = JSON.parse(localStorage.getItem("userName"));
+    const { userName } = this.state;
+    const myUserName = this.props.user.LoginReducer.userName;
     return (
       <>
         <section>
           <nav className="navBar">
             <div className="left-Section">
-                {" "}
-                <img src={Logo} alt="Emumba" className="navbar-logo-styling" onClick={() => {
-      
-                  }}  />{" "}
+              {" "}
+              <img
+                src={Logo}
+                alt="Emumba"
+                className="navbar-logo-styling"
+                onClick={() => {}}
+              />{" "}
             </div>
             <div className="navbar-search-section">
               <SearchBar />
-              {
-                userName === myUserName ? (
+              {userName === myUserName ? (
                 <Dropdown />
               ) : (
-                 <Link to="/login">
-                    <button className="navbar-login-button" >Login</button>
-                 </Link>
+                <Link to="/login">
+                  <button className="navbar-login-button">Login</button>
+                </Link>
               )}
             </div>
           </nav>
@@ -43,3 +46,11 @@ export default class Navbar extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user: state,
+  };
+};
+
+export default connect(mapStateToProps)(Navbar);
