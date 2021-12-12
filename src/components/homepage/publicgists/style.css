@@ -1,13 +1,19 @@
-.main-sec{
-    margin-top: 60px;
-  }
-  
+.main-sec {
+  margin-top: 60px;
+}
+
 .view-icons {
-    display: flex;
-    width: 80%;
-    justify-content: flex-end;
-    margin: 15px 200px 5px auto;
-    gap: 15px;
-    cursor: pointer;
-  }
-  
+  display: flex;
+  width: 80%;
+  justify-content: flex-end;
+  margin: 15px 200px 5px auto;
+  gap: 15px;
+  cursor: pointer;
+}
+
+.list-active {
+  color: #5acba1;
+}
+.grid-active {
+  color: #5acba1;
+}

@@ -14,8 +14,11 @@ class PublicGists extends Component {
       publicRecord: [],
       isListView: true,
       isGridView: false,
+      isActive: "list"
     };
     this.getData = this.getData.bind(this);
+    this.listToggle = this.listToggle.bind(this);
+    this.gridToggle = this.gridToggle.bind(this);
   }
   getData = async () => {
     this.setState({ loading: true });
@@ -30,6 +33,7 @@ class PublicGists extends Component {
     this.setState({
       isListView: true,
       isGridView: false,
+      isActive : "list"
     });
   };
 
@@ -37,6 +41,7 @@ class PublicGists extends Component {
     this.setState({
       isListView: false,
       isGridView: true,
+      isActive : "grid"
     });
   };
 
@@ -45,7 +50,7 @@ class PublicGists extends Component {
   }
 
   render() {
-    const { publicRecord , loading , isGridView , isListView } = this.state;
+    const { publicRecord , loading , isGridView , isListView , isActive } = this.state;
     const TableView = (loading ? <Loader /> : <Table publicGistsDisplay={publicRecord} />);
     const GridView = (loading ? <Loader /> : <Grid publicGistsDisplay={publicRecord} /> );
     return (
@@ -53,15 +58,15 @@ class PublicGists extends Component {
         <div className="view-icons">
           <span>
             <i
-              className="fas fa-list fa-2x"
-              onClick={() => this.listToggle()}
+              className={isActive === "list" ? "fas fa-list fa-2x list-active" : "fas fa-list fa-2x"}
+              onClick={this.listToggle}
             ></i>
           </span>
           <span style={{ border: "1px solid #5acba1" }}></span>
           <span>
             <i
-              className="fas fa-th-large fa-2x"
-              onClick={() => this.gridToggle()}
+              className={isActive === "grid" ?  "fas fa-th-large fa-2x grid-active" :  "fas fa-th-large fa-2x"}
+              onClick={this.gridToggle}
             ></i>
           </span>
         </div>
