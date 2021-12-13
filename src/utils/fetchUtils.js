@@ -125,12 +125,12 @@ export const checkGistStared = async (uniqueId) => {
   return checkStar;
 };
 
-export const staredAGist = async (uniqueId) => {
+export const staredAGist = async (gist_id) => {
   const starAGist = await axios
     .put(
-      `${BASE_URL}/gists/${uniqueId}/star`,
+      `${BASE_URL}/gists/${gist_id}/star`,
       {
-        uniqueId: uniqueId,
+        gist_id: gist_id,
       },
       {
         headers: {
@@ -142,12 +142,12 @@ export const staredAGist = async (uniqueId) => {
   return starAGist;
 };
 
-export const forkedGist = async (uniqueId) => {
+export const forkedGist = async (gist_id) => {
   const forkAGist = await axios
     .post(
-      `${BASE_URL}/gists/${uniqueId}/forks`,
+      `${BASE_URL}/gists/${gist_id}/forks`,
       {
-        uniqueId: uniqueId,
+        gist_id: gist_id,
       },
       {
         headers: {
@@ -155,16 +155,16 @@ export const forkedGist = async (uniqueId) => {
         },
       }
     )
-    .then(data => data?.status);
+    .then((data) => data?.status);
   return forkAGist;
 };
 
-export const unStaredAGist = async (uniqueId) => {
+export const unStaredAGist = async (gist_id) => {
   const unStarAGist = await axios
     .delete(
-      `${BASE_URL}/gists/${uniqueId}/star`,
+      `${BASE_URL}/gists/${gist_id}/star`,
       {
-        uniqueId: uniqueId,
+        gist_id: gist_id,
       },
       {
         headers: {
@@ -172,6 +172,6 @@ export const unStaredAGist = async (uniqueId) => {
         },
       }
     )
-    .then(data => data?.status);
+    .then((data) => data?.status);
   return unStarAGist;
 };

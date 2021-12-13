@@ -50,8 +50,8 @@ class UniqueGist extends Component {
       });
     } else {
       const unStar = await unStaredAGist(gistId)
-        .then((data) => (alreadyStared = 1))
-        .catch((err) => alreadyStared);
+        .then(data => (alreadyStared = 1))
+        .catch(err => alreadyStared);
       {
         this.setState({
           gistStarValue: this.state.gistStarValue - 1,
@@ -61,15 +61,15 @@ class UniqueGist extends Component {
   };
 
   forkGist = async () => {
-    const { uniqueData } = this.state;
+    const { uniqueData , gistForkValue} = this.state;
     const gistId = uniqueData?.id;
     let alreadyFork = 0;
     let fork = await forkedGist(gistId)
-      .then((data) => alreadyFork = 1)
-      .catch((err) => alreadyFork);
+      .then(data => alreadyFork = 1)
+      .catch(err => alreadyFork);
     if (alreadyFork) {
       this.setState({
-        gistStarValue: this.state.gistForkValue + 1,
+        gistStarValue: gistForkValue + 1,
       });
     }
   };
