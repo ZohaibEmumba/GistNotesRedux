@@ -82,7 +82,9 @@ class Table extends Component {
                       <td>{Object.keys(gist?.files)[0]}</td>
                       <td>{gist?.description}</td>
                       <td id="gists-icons">
-                        {checkGistStared(gist?.id) === 204
+                      {/* checkGistStared(gist?.id) === 204 */}
+                        { 
+                        true
                           ? filledStar
                           : unFilledStart}
                         <i className="fas fa-code-branch"></i>

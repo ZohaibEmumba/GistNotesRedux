@@ -13,6 +13,7 @@ class PrivateGists extends Component {
       privateRecord: [],
       isListView: true,
       isGridView: false,
+      isActive: "list"
     };
     this.getData = this.getData.bind(this);
   }
@@ -29,6 +30,7 @@ class PrivateGists extends Component {
     this.setState({
       isListView: true,
       isGridView: false,
+      isActive : "list"
     });
   };
 
@@ -36,6 +38,7 @@ class PrivateGists extends Component {
     this.setState({
       isListView: false,
       isGridView: true,
+      isActive : "grid"
     });
   };
 
@@ -43,7 +46,7 @@ class PrivateGists extends Component {
     this.getData();
   }
   render() {
-    const { privateRecord , loading , isGridView , isListView } = this.state;
+    const { privateRecord , loading , isGridView , isListView  , isActive} = this.state;
     const TableView = (loading ? <Loader /> : <Table privateGistsDisplay={privateRecord} />);
     const GridView = (loading ? <Loader /> : <Grid privateGistsDisplay={privateRecord} /> );
     return (
@@ -51,14 +54,14 @@ class PrivateGists extends Component {
         <div className="view-icons">
           <span>
             <i
-              className="fas fa-list fa-2x"
-              onClick={() => this.listToggle()}
+              className={isActive === "list" ? "fas fa-list fa-2x list-active" : "fas fa-list fa-2x"}
+              onClick={() => this.listToggle()} 
             ></i>
           </span>
           <span style={{ border: "1px solid #5acba1" }}></span>
           <span>
             <i
-              className="fas fa-th-large fa-2x"
+             className={isActive === "grid" ?  "fas fa-th-large fa-2x grid-active" :  "fas fa-th-large fa-2x"}
               onClick={() => this.gridToggle()}
             ></i>
           </span>
