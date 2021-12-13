@@ -138,7 +138,7 @@ export const staredAGist = async (uniqueId) => {
         },
       }
     )
-    .then((data) => data?.status);
+    .then((data) => console.log(data));
   return starAGist;
 };
 
@@ -155,6 +155,23 @@ export const forkedGist = async (uniqueId) => {
         },
       }
     )
-    .then((data) => data?.status);
+    .then(data => data?.status);
   return forkAGist;
+};
+
+export const unStaredAGist = async (uniqueId) => {
+  const unStarAGist = await axios
+    .delete(
+      `${BASE_URL}/gists/${uniqueId}/star`,
+      {
+        uniqueId: uniqueId,
+      },
+      {
+        headers: {
+          Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
+        },
+      }
+    )
+    .then(data => data?.status);
+  return unStarAGist;
 };
