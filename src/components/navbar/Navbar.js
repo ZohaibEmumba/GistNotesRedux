@@ -23,12 +23,14 @@ class Navbar extends Component {
           <nav className="navBar">
             <div className="left-Section">
               {" "}
+              <Link to="/">
               <img
                 src={Logo}
                 alt="Emumba"
                 className="navbar-logo-styling"
                 onClick={() => {}}
-              />{" "}
+              /></Link>
+              {" "}
             </div>
             <div className="navbar-search-section">
               <SearchBar />

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { checkGistStared } from "../../../utils/fetchUtils";
+// import { checkGistStared } from "../../../utils/fetchUtils";
 import "./style.css";
 
 class Table extends Component {
