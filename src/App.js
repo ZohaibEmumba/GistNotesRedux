@@ -9,8 +9,8 @@ import CreateGists from "./components/creategist/CreateGist";
 import UpdateAGist from "./components/editgist/UpdateGist";
 import GithubProfile from "./components/gitprofilepage/GitProfilePage";
 import StaredGists from "./components/stargists/StaredGists";
-import "./App.css";
 import FilterGists from "./components/filtergists/FilterGists";
+import "./App.css";
 
 class App extends Component {
   render() {

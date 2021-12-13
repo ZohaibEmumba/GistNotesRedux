@@ -2,7 +2,7 @@ import axios from "axios";
 
 //auth user API loginng in
 const BASE_URL = "https://api.github.com";
-const PAT = "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";
+const PAT = "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";
 const userName = "Zohaibkhattak15";
 
 export const loginAuthUser = async (userName) => {
@@ -103,21 +103,58 @@ export const getGistObj = async (id) => {
   return getGists;
 };
 
-export const  getStaredGists = async () => {
+export const getStaredGists = async () => {
   const getStaredGists = await axios
-  .get(`https://api.github.com/gists/starred`, {
-    headers: {
-      Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
-    },
-  }).then(data => data.data);
+    .get(`https://api.github.com/gists/starred`, {
+      headers: {
+        Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
+      },
+    })
+    .then((data) => data.data);
   return getStaredGists;
-} 
+};
 
 export const checkGistStared = async (uniqueId) => {
-  const checkStar = await axios.get(`${BASE_URL}/gists/${uniqueId}/star`, {
-    headers: {
-      Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
-    },
-  }).then(data => data?.status);
+  const checkStar = await axios
+    .get(`${BASE_URL}/gists/${uniqueId}/star`, {
+      headers: {
+        Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
+      },
+    })
+    .then((data) => data?.status);
   return checkStar;
+};
+
+export const staredAGist = async (uniqueId) => {
+  const starAGist = await axios
+    .put(
+      `${BASE_URL}/gists/${uniqueId}/star`,
+      {
+        uniqueId: uniqueId,
+      },
+      {
+        headers: {
+          Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
+        },
+      }
+    )
+    .then((data) => data?.status);
+  return starAGist;
+};
+
+export const forkedGist = async (uniqueId) => {
+  const forkAGist = await axios
+    .post(
+      `${BASE_URL}/gists/${uniqueId}/forks`,
+      {
+        uniqueId: uniqueId,
+      },
+      {
+        headers: {
+          Authorization: `Basic ${btoa(`${userName}:${PAT}`)}`,
+        },
+      }
+    )
+    .then((data) => data?.status);
+  return forkAGist;
 };

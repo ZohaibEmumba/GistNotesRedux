@@ -22,14 +22,14 @@ class SearchBar extends Component {
         <input
           type="text"
           placeholder="Search Notes.."
-          onChange={(e) => {
-            this.setState({ takeStateValue: e.target.value });
+          onChange={(event) => {
+            this.setState({ takeStateValue: event.target.value });
           }}
-          // onKeyPress={(e)=> {
-          //   if(e.keyCode === 13){
-          //   this.setState({takeStateValue: e.target.value})
-          // }
-          // }}
+          onKeyUp = {(event)=> {
+            if(event.key === 13){
+            this.setState({takeStateValue: event.target.value})
+          }
+          }}
         />
         <i className="fas fa-search search-icon" onClick={this.getValue} />
       </div>

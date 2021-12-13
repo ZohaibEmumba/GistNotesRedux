@@ -28,9 +28,6 @@ class Table extends Component {
     }
   }
 
-  componentWillUnmount() {
-    
-  }
   render() {
     const { privateGistsDisplay } = this.props;
     const { publicGists, date } = this.state;

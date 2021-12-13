@@ -1,18 +1,22 @@
 import React, { Component } from "react";
 import "./style.css";
-import { getPublicGist, delAGist } from "../../../utils/fetchUtils";
-import IconsDisp from "./iconsDisp/IconsDisp";
+import { getPublicGist, delAGist , staredAGist , forkedGist} from "../../../utils/fetchUtils";
+import { connect } from "react-redux";
 
-export default class UniqueGist extends Component {
+class UniqueGist extends Component {
   constructor(props) {
     super(props);
     this.state = {
       uniqueData: {},
       loading: false,
+      gistStarValue : 0,
+      gistForkValue : 0
     };
     this.getGistData = this.getGistData.bind(this);
     this.delGist = this.delGist.bind(this);
     this.updateGist = this.updateGist.bind(this);
+    this.starGist = this.starGist.bind(this);
+    this.forkGist = this.forkGist.bind(this);
   }
 
   getGistData = async () => {
@@ -26,6 +30,31 @@ export default class UniqueGist extends Component {
       })
     );
   };
+  
+  starGist= async ()=>{
+    const {uniqueData} = this.state;
+    const gistId = uniqueData?.id;
+    let alreadSyStared = 0 ;
+    let star = await staredAGist(gistId).then(data => alreadSyStared = 1).catch(err =>  alreadSyStared );
+    if(alreadSyStared)
+    {
+      this.setState({
+      gistStarValue : this.state.gistStarValue + 1
+    })
+  }
+  }
+
+  forkGist = async () => {
+    const {uniqueData} = this.state;
+    const gistId = uniqueData?.id;
+    let alreadyFork = 0;
+    let fork = await forkedGist(gistId).then(data => alreadyFork = 1).catch(err => alreadyFork);
+    if(alreadyFork) 
+    {
+      this.setState({
+        gistStarValue : this.state.gistForkValue + 1
+      })
+   }}
 
   delGist = async () => {
     const { uniqueData } = this.state;
@@ -46,8 +75,10 @@ export default class UniqueGist extends Component {
   };
 
   render() {
-    const { uniqueData } = this.state;
+
+    const { uniqueData , gistStarValue , gistForkValue} = this.state;
     const { files } = uniqueData;
+    const myUserName = this.props.user.LoginReducer.userName;
     let filename;
     let content;
     let myContentArray;
@@ -59,8 +90,7 @@ export default class UniqueGist extends Component {
       });
       myContentArray = content.split("\n");
     }
-    // const dispEditAndUpdateIcons =
-    //   uniqueData?.owner?.login === "Zohaibkhattak15" ? <IconsDisp /> : null;
+   
     return (
       <>
         <div className="whole-card-section">
@@ -86,9 +116,8 @@ export default class UniqueGist extends Component {
             </div>
 
             <div className="gist-icons">
-              {/* {dispEditAndUpdateIcons} */}
-              {uniqueData?.owner?.login ===
-              JSON.parse(localStorage.getItem("userName")) ? (
+              {uniqueData?.owner?.login === myUserName
+               ? (
                 <>
                   <span style={{ color: "blue" }}>
                     <i className="far fa-edit" onClick={this.updateGist}></i>{" "}
@@ -102,7 +131,7 @@ export default class UniqueGist extends Component {
               ) : null}
               <div className="icons1">
                 <span style={{ color: "blue" }}>
-                  <i className="far fa-star"></i> Star
+                  <i className={gistStarValue === 0 ? "far fa-star" : "fas fa-star"} onClick={this.starGist}></i> Star
                 </span>
                 <span
                   style={{
@@ -111,7 +140,7 @@ export default class UniqueGist extends Component {
                     borderRadius: "5px",
                   }}
                 >
-                  0
+                  {gistStarValue}
                 </span>
               </div>
               <div className="icons2">
@@ -119,6 +148,7 @@ export default class UniqueGist extends Component {
                   <i
                     className="fas fa-code-branch"
                     style={{ color: "blue" }}
+                    onClick={this.forkGist}
                   ></i>{" "}
                   Fork
                 </span>
@@ -129,7 +159,7 @@ export default class UniqueGist extends Component {
                     borderRadius: "5px",
                   }}
                 >
-                  0
+                  {gistForkValue}
                 </span>
               </div>
             </div>
@@ -166,3 +196,11 @@ export default class UniqueGist extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    user: state 
+  }
+}
+
+export default connect (mapStateToProps)(UniqueGist);
