@@ -21,7 +21,8 @@ class Table extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { user } = this.props;
-    const { searchVal } = user;
+    const {LoginReducer } = user;
+    const { searchVal } = LoginReducer;
     if (prevProps.user.searchVal !== searchVal) {
       window.location = `/getFilterGists?uName=${searchVal}`;
     }

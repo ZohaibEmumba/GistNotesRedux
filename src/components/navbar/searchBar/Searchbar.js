@@ -25,6 +25,11 @@ class SearchBar extends Component {
           onChange={(e) => {
             this.setState({ takeStateValue: e.target.value });
           }}
+          // onKeyPress={(e)=> {
+          //   if(e.keyCode === 13){
+          //   this.setState({takeStateValue: e.target.value})
+          // }
+          // }}
         />
         <i className="fas fa-search search-icon" onClick={this.getValue} />
       </div>
